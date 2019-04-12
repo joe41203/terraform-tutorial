@@ -7,7 +7,11 @@ provider "aws" {
   region     = "us-east-1"
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-2757f631"
   instance_type = "t2.micro"
+}
+
+resource "aws_eip" "ip" {
+  instance = "${aws_instance.app.id}"
 }
